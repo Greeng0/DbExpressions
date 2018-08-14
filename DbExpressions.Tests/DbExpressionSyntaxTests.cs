@@ -15,31 +15,31 @@ namespace DbExpressions.Tests
         }
 
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateAndExpression()
         {
             var expression = ExpressionFactory.And(ExpressionFactory.Constant(1), ExpressionFactory.Constant(2));
             var result = QueryTranslator.Translate(expression);
-            Assert.AreEqual(AndExpressionSyntax,result.Sql);
+            Assert.AreEqual(AndExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateAddExpression()
         {
             var expression = ExpressionFactory.Add(ExpressionFactory.Constant(1), ExpressionFactory.Constant(2));
             var result = QueryTranslator.Translate(expression);
-            Assert.AreEqual(AddExpressionSyntax,result.Sql);
+            Assert.AreEqual(AddExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateAliasExpression()
         {
             var expression = ExpressionFactory.Alias(ExpressionFactory.Table("SomeTable"), "t0");
             var result = QueryTranslator.Translate(expression);
-            Assert.AreEqual(AliasExpressionSyntax,result.Sql);
+            Assert.AreEqual(AliasExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateAssignExpression()
         {
             var expression = ExpressionFactory.Assign(ExpressionFactory.Column("SomeColumn"),
@@ -48,16 +48,16 @@ namespace DbExpressions.Tests
             Assert.AreEqual(AssignExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
-       public void ShouldTranslateAssignNullExpression()
-       {
-           var expression = ExpressionFactory.Assign(ExpressionFactory.Column("SomeColumn"),
-                                                     ExpressionFactory.Constant(null));
-           var result = QueryTranslator.Translate(expression);
-           Assert.AreEqual(AssignNullExpressionSyntax, result.Sql);
-       }
+        [TestMethod]
+        public void ShouldTranslateAssignNullExpression()
+        {
+            var expression = ExpressionFactory.Assign(ExpressionFactory.Column("SomeColumn"),
+                                                      ExpressionFactory.Constant(null));
+            var result = QueryTranslator.Translate(expression);
+            Assert.AreEqual(AssignNullExpressionSyntax, result.Sql);
+        }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateAvgExpression()
         {
             var expression = ExpressionFactory.Avg(ExpressionFactory.Column("SomeColumn"));
@@ -65,7 +65,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(AvgExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateColumnExpression()
         {
             var expression = ExpressionFactory.Column("SomeColumn");
@@ -73,7 +73,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(ColumnExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateConcatExpression()
         {
             var expression = ExpressionFactory.Concat(ExpressionFactory.Table("SomeTable"),
@@ -82,7 +82,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(ConcatExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateConditionalExpression()
         {
             var expression = ExpressionFactory.Conditional(ExpressionFactory.Column("SomeColumn") == ExpressionFactory.Constant("SomeValue"),
@@ -92,7 +92,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(ConditionalExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateConstantExpression()
         {
             var expression = ExpressionFactory.Constant(1);
@@ -101,7 +101,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(ConstantExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateCountExpression()
         {
             var expression = ExpressionFactory.Count(ExpressionFactory.Column("SomeColumn"));
@@ -109,7 +109,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(CountExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateDivideExpression()
         {
             var expression = ExpressionFactory.Divide(ExpressionFactory.Constant(1), ExpressionFactory.Constant(2));
@@ -117,7 +117,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(DivideExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateEqualExpression()
         {
             var expression = ExpressionFactory.Equal(ExpressionFactory.Column("SomeColumn"),
@@ -126,7 +126,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(EqualExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateExistsExpression()
         {
             var expression =
@@ -135,7 +135,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(ExistsExpressionSyntax.Strip(), result.Sql.Strip());
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateGreaterThanExpression()
         {
             var expression =
@@ -145,7 +145,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(GreaterThanExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateGreaterThanOrEqualExpression()
         {
             var expression =
@@ -155,16 +155,16 @@ namespace DbExpressions.Tests
             Assert.AreEqual(GreaterThanOrEqualExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateInExpressionUsingValueRange()
         {
             var expression =
-                ExpressionFactory.In(ExpressionFactory.Column("SomeColumn"), new object[] {1, 2});
+                ExpressionFactory.In(ExpressionFactory.Column("SomeColumn"), new object[] { 1, 2 });
             var result = QueryTranslator.Translate(expression);
             Assert.AreEqual(InValueRangeExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateInExpressionUsingSubQuery()
         {
             var expression =
@@ -176,7 +176,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(InSubQueryExpressionSyntax.Strip(), result.Sql.Strip());
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateInnerJoinExpression()
         {
             var expression =
@@ -188,7 +188,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(InnerJoinExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateLeftOuterJoinExpression()
         {
             var expression =
@@ -200,21 +200,21 @@ namespace DbExpressions.Tests
             Assert.AreEqual(LeftOuterJoinExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateRightOuterJoinExpression()
         {
             if (GetType() == typeof(SQLiteExpressionSyntaxTests))
                 return;
-           var expression =
-                ExpressionFactory.RightOuterJoin(ExpressionFactory.Table("SomeTable"),
-                                            ExpressionFactory.Equal(ExpressionFactory.Column("SomeColumn"),
-                                                                    ExpressionFactory.Column("SomeOtherColumn")));
+            var expression =
+                 ExpressionFactory.RightOuterJoin(ExpressionFactory.Table("SomeTable"),
+                                             ExpressionFactory.Equal(ExpressionFactory.Column("SomeColumn"),
+                                                                     ExpressionFactory.Column("SomeOtherColumn")));
 
             var result = QueryTranslator.Translate(expression);
             Assert.AreEqual(RightOuterJoinExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateLengthExpression()
         {
             var expression =
@@ -224,7 +224,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(LengthExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateLessThanExpression()
         {
             var expression =
@@ -234,7 +234,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(LessThanExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateLessThanOrEqualExpression()
         {
             var expression =
@@ -244,17 +244,17 @@ namespace DbExpressions.Tests
             Assert.AreEqual(LessThanOrEqualExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateListExpression()
         {
             var expression =
-                ExpressionFactory.List(new []{ExpressionFactory.Column("SomeColumn"),
+                ExpressionFactory.List(new[]{ExpressionFactory.Column("SomeColumn"),
                                        ExpressionFactory.Column("SomeOtherColumn")});
             var result = QueryTranslator.Translate(expression);
             Assert.AreEqual(ListExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateBatchExpression()
         {
             var expression =
@@ -264,7 +264,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(BatchExpressionSyntax.Clean(), result.Sql.Clean());
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateMaxExpression()
         {
             var expression =
@@ -273,7 +273,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(MaxExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateMinExpression()
         {
             var expression =
@@ -282,7 +282,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(MinExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateMultiplyExpression()
         {
             var expression = ExpressionFactory.Multiply(ExpressionFactory.Constant(1), ExpressionFactory.Constant(2));
@@ -290,7 +290,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(MultiplyExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateSubstractExpression()
         {
             var expression = ExpressionFactory.Subtract(ExpressionFactory.Constant(1), ExpressionFactory.Constant(2));
@@ -298,7 +298,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(SubstractExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateNotExpression()
         {
             var expression =
@@ -308,26 +308,26 @@ namespace DbExpressions.Tests
             Assert.AreEqual(NotExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
-       public void ShouldTranslateDistinctExpression()
-       {
-           var dbSelectQuery = new DbSelectQuery();
-           dbSelectQuery.SelectDistinct(f => f.Column("SomeColumn"));                                           
-           var result = QueryTranslator.Translate(dbSelectQuery);
-           Assert.AreEqual(DistinctExpressionSyntax.Clean(), result.Sql.Clean());
-       }
+        [TestMethod]
+        public void ShouldTranslateDistinctExpression()
+        {
+            var dbSelectQuery = new DbSelectQuery();
+            dbSelectQuery.SelectDistinct(f => f.Column("SomeColumn"));
+            var result = QueryTranslator.Translate(dbSelectQuery);
+            Assert.AreEqual(DistinctExpressionSyntax.Clean(), result.Sql.Clean());
+        }
 
-       [TestMethod]
-       public void ShouldTranslateDistinctWithTopExpression()
-       {
-           var dbSelectQuery = new DbSelectQuery();
-           dbSelectQuery.SelectDistinct(f => f.Column("SomeColumn")).Take(1);
-           var result = QueryTranslator.Translate(dbSelectQuery);
-           Assert.AreEqual(DistinctWithTopExpressionSyntax.Clean(), result.Sql.Clean());
-       }
+        [TestMethod]
+        public void ShouldTranslateDistinctWithTopExpression()
+        {
+            var dbSelectQuery = new DbSelectQuery();
+            dbSelectQuery.SelectDistinct(f => f.Column("SomeColumn")).Take(1);
+            var result = QueryTranslator.Translate(dbSelectQuery);
+            Assert.AreEqual(DistinctWithTopExpressionSyntax.Clean(), result.Sql.Clean());
+        }
 
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateNotEqualExpression()
         {
             var expression = ExpressionFactory.NotEqual(ExpressionFactory.Column("SomeColumn"),
@@ -336,7 +336,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(NotEqualExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateOrExpression()
         {
             var expression = ExpressionFactory.Or(ExpressionFactory.Constant(1), ExpressionFactory.Constant(2));
@@ -344,7 +344,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(OrExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateOrderByAscendingExpression()
         {
             var expression = ExpressionFactory.OrderByAscending(ExpressionFactory.Column("SomeColumn"));
@@ -352,7 +352,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(OrderByAscendingExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateOrderByDescendingExpression()
         {
             var expression = ExpressionFactory.OrderByDescending(ExpressionFactory.Column("SomeColumn"));
@@ -360,7 +360,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(OrderByDescendingExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslatePrefixExpression()
         {
             var expression = ExpressionFactory.Prefix(ExpressionFactory.Column("SomeColumn"), "t0");
@@ -368,7 +368,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(PrefixExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateReplaceExpression()
         {
             var expression = ExpressionFactory.Replace(ExpressionFactory.Column("SomeColumn"),
@@ -378,7 +378,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(ReplaceExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateReverseExpression()
         {
             var expression = ExpressionFactory.Reverse(ExpressionFactory.Column("SomeColumn"));
@@ -386,7 +386,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(ReverseExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateSoundExExpression()
         {
             var expression = ExpressionFactory.SoundEx(ExpressionFactory.Column("SomeColumn"));
@@ -394,15 +394,15 @@ namespace DbExpressions.Tests
             Assert.AreEqual(SoundExExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateSumExpression()
         {
             var expression = ExpressionFactory.Sum(ExpressionFactory.Column("SomeColumn"));
             var result = QueryTranslator.Translate(expression);
-            Assert.AreEqual(SumExpressionSyntax , result.Sql);
+            Assert.AreEqual(SumExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateTableExpression()
         {
             var expression = ExpressionFactory.Table("SomeTable");
@@ -410,7 +410,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(TableExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateToLowerExpression()
         {
             var expression = ExpressionFactory.ToLower(ExpressionFactory.Column("SomeColumn"));
@@ -418,7 +418,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(ToLowerExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateToUpperExpression()
         {
             var expression = ExpressionFactory.ToUpper(ExpressionFactory.Column("SomeColumn"));
@@ -426,7 +426,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(ToUpperExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateTrimExpression()
         {
             var expression = ExpressionFactory.Trim(ExpressionFactory.Column("SomeColumn"));
@@ -434,7 +434,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(TrimExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateTrimStartExpression()
         {
             var expression = ExpressionFactory.TrimStart(ExpressionFactory.Column("SomeColumn"));
@@ -442,15 +442,15 @@ namespace DbExpressions.Tests
             Assert.AreEqual(TrimStartExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateTrimEndExpression()
         {
             var expression = ExpressionFactory.TrimEnd(ExpressionFactory.Column("SomeColumn"));
             var result = QueryTranslator.Translate(expression);
             Assert.AreEqual(TrimEndExpressionSyntax, result.Sql);
         }
-        
-       [TestMethod]
+
+        [TestMethod]
         public void ShouldTranslateSubStringExpression()
         {
             var expression = ExpressionFactory.SubString(ExpressionFactory.Column("SomeColumn"),
@@ -459,7 +459,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(SubStringExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateDateExpression()
         {
             var expression = ExpressionFactory.Date(ExpressionFactory.Column("SomeColumn"));
@@ -467,7 +467,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(DateExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateYearExpression()
         {
             var expression = ExpressionFactory.Year(ExpressionFactory.Column("SomeColumn"));
@@ -475,7 +475,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(YearExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateMonthExpression()
         {
             var expression = ExpressionFactory.Month(ExpressionFactory.Column("SomeColumn"));
@@ -483,7 +483,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(MonthExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateHourExpression()
         {
             var expression = ExpressionFactory.Hour(ExpressionFactory.Column("SomeColumn"));
@@ -491,7 +491,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(HourExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateNowExpression()
         {
             var expression = ExpressionFactory.Now();
@@ -499,7 +499,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(NowExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateTodayExpression()
         {
             var expression = ExpressionFactory.ToDay();
@@ -508,7 +508,7 @@ namespace DbExpressions.Tests
         }
 
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateMinuteExpression()
         {
             var expression = ExpressionFactory.Minute(ExpressionFactory.Column("SomeColumn"));
@@ -516,7 +516,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(MinuteExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateSecondExpression()
         {
             var expression = ExpressionFactory.Second(ExpressionFactory.Column("SomeColumn"));
@@ -524,17 +524,17 @@ namespace DbExpressions.Tests
             Assert.AreEqual(SecondExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateMillisecondExpression()
         {
             if (GetType() == typeof(SQLiteExpressionSyntaxTests))
                 return;
-           var expression = ExpressionFactory.Millisecond(ExpressionFactory.Column("SomeColumn"));
+            var expression = ExpressionFactory.Millisecond(ExpressionFactory.Column("SomeColumn"));
             var result = QueryTranslator.Translate(expression);
             Assert.AreEqual(MillisecondExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateDayOfYearExpression()
         {
             var expression = ExpressionFactory.DayOfYear(ExpressionFactory.Column("SomeColumn"));
@@ -542,7 +542,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(DayOfYearExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateDayOfMonthExpression()
         {
             var expression = ExpressionFactory.DayOfMonth(ExpressionFactory.Column("SomeColumn"));
@@ -550,7 +550,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(DayOfMonthExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateDayOfWeekExpression()
         {
             var expression = ExpressionFactory.DayOfWeek(ExpressionFactory.Column("SomeColumn"));
@@ -558,15 +558,15 @@ namespace DbExpressions.Tests
             Assert.AreEqual(DayOfWeekExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateAddYearsExpression()
         {
-            var expression = ExpressionFactory.AddYears(ExpressionFactory.Column("SomeColumn"),ExpressionFactory.Constant(1));
+            var expression = ExpressionFactory.AddYears(ExpressionFactory.Column("SomeColumn"), ExpressionFactory.Constant(1));
             var result = QueryTranslator.Translate(expression);
             Assert.AreEqual(AddYearsExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateAddMonthsExpression()
         {
             var expression = ExpressionFactory.AddMonths(ExpressionFactory.Column("SomeColumn"), ExpressionFactory.Constant(1));
@@ -574,7 +574,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(AddMonthsExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateAddDaysExpression()
         {
             var expression = ExpressionFactory.AddDays(ExpressionFactory.Column("SomeColumn"), ExpressionFactory.Constant(1));
@@ -582,7 +582,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(AddDaysExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateAddHoursExpression()
         {
             var expression = ExpressionFactory.AddHours(ExpressionFactory.Column("SomeColumn"), ExpressionFactory.Constant(1));
@@ -590,7 +590,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(AddHoursExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateAddMinutesExpression()
         {
             var expression = ExpressionFactory.AddMinutes(ExpressionFactory.Column("SomeColumn"), ExpressionFactory.Constant(1));
@@ -598,7 +598,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(AddMinutesExpressionSyntax, result.Sql);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateAddSecondsExpression()
         {
             var expression = ExpressionFactory.AddSeconds(ExpressionFactory.Column("SomeColumn"), ExpressionFactory.Constant(1));
@@ -732,7 +732,7 @@ namespace DbExpressions.Tests
         [TestMethod]
         public void ShouldTranslatePowerExpression()
         {
-            var expression = ExpressionFactory.Power(ExpressionFactory.Column("SomeColumn"),ExpressionFactory.Constant(2));
+            var expression = ExpressionFactory.Power(ExpressionFactory.Column("SomeColumn"), ExpressionFactory.Constant(2));
             var result = QueryTranslator.Translate(expression);
             Assert.AreEqual(PowerExpressionSyntax, result.Sql);
         }
@@ -766,7 +766,7 @@ namespace DbExpressions.Tests
         [TestMethod]
         public void ShouldTranslateRoundExpression()
         {
-            var expression = ExpressionFactory.Round(ExpressionFactory.Column("SomeColumn"),ExpressionFactory.Constant(2));
+            var expression = ExpressionFactory.Round(ExpressionFactory.Column("SomeColumn"), ExpressionFactory.Constant(2));
             var result = QueryTranslator.Translate(expression);
             Assert.AreEqual(RoundExpressionSyntax, result.Sql);
         }
@@ -830,7 +830,7 @@ namespace DbExpressions.Tests
             if (GetType() == typeof(SQLiteExpressionSyntaxTests))
                 return;
             var dbUpdateQuery = new DbUpdateQuery();
-            var expression = dbUpdateQuery.Update(e => e.Table("SomeTable", "t0"))
+            var expression = dbUpdateQuery.Update(e => e.Table("SomeTable").As("t0"))
                 .Set(e => e.Column("SomeColumn"), 1)
                 .Where(e => e.Column("SomeColumn") == e.Constant(2));
 
@@ -844,10 +844,10 @@ namespace DbExpressions.Tests
             if (GetType() == typeof(SQLiteExpressionSyntaxTests))
                 return;
             var dbUpdateQuery = new DbUpdateQuery();
-            var expression = dbUpdateQuery.Update(e => e.Table("SomeTable", "t0"))
+            var expression = dbUpdateQuery.Update(e => e.Table("SomeTable").As("t0"))
                 .Set(e => e.Column("SomeColumn"), 1)
-                .From(e => e.Table("SomeTable", "t0")).InnerJoin(e => e.Table("SomeOtherTable","t1"), e=> e.Column("t0","Id") == e.Column("t1","Id"))
-                .Where(e => e.Column("t0","SomeColumn") == e.Constant(2));
+                .From(e => e.Table("SomeTable").As("t0")).InnerJoin(e => e.Table("SomeOtherTable").As("t1"), e => e.Column("t0", "Id") == e.Column("t1", "Id"))
+                .Where(e => e.Column("t0", "SomeColumn") == e.Constant(2));
 
             var result = QueryTranslator.Translate(expression);
             Assert.AreEqual(UpdateExpressionWithFromClauseSyntax.Clean(), result.Sql.Clean());
@@ -855,38 +855,38 @@ namespace DbExpressions.Tests
 
 
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateInsertExpression()
         {
-           var dbInsertQuery = new DbInsertQuery();
-           var expression = dbInsertQuery.Insert(e => e.Table("SomeTable"))
-                .Columns(e => e.Column("SomeColumn")).Values(e => e.Constant(1));
+            var dbInsertQuery = new DbInsertQuery();
+            var expression = dbInsertQuery.Insert(e => e.Table("SomeTable"))
+                 .Columns(e => e.Column("SomeColumn")).Values(e => e.Constant(1));
             var result = QueryTranslator.Translate(expression);
             Assert.AreEqual(InsertExpressionSyntax.Clean(), result.Sql.Clean());
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldTranslateDeleteExpression()
         {
-           var dbDeleteQuery = new DbDeleteQuery();
-           var expression = dbDeleteQuery.Delete(e => e.Table("SomeTable"))
-                .Where(e => e.Column("SomeColumn") == e.Constant(1));
+            var dbDeleteQuery = new DbDeleteQuery();
+            var expression = dbDeleteQuery.Delete(e => e.Table("SomeTable"))
+                 .Where(e => e.Column("SomeColumn") == e.Constant(1));
             var result = QueryTranslator.Translate(expression);
             Assert.AreEqual(DeleteExpressionSyntax.Clean(), result.Sql.Clean());
         }
-       
+
         [TestMethod]
         public void ShouldTranslateDeleteExpressionWithAliasedTarget()
         {
             if (GetType() == typeof(SQLiteExpressionSyntaxTests))
                 return;
             var dbDeleteQuery = new DbDeleteQuery();
-            var expression = dbDeleteQuery.Delete(e => e.Table("SomeTable", "t0"))
+            var expression = dbDeleteQuery.Delete(e => e.Table("SomeTable").As("t0"))
                 .Where(e => e.Column("t0", "SomeColumn") == e.Constant(1));
             var result = QueryTranslator.Translate(expression);
             Assert.AreEqual(DeleteExpressionWithAliasedTargetSyntax.Clean(), result.Sql.Clean());
         }
-              
+
         [TestMethod]
         public void ShouldTranslateDeleteExpressionAliasedTargetInFromExpression()
         {
@@ -894,7 +894,7 @@ namespace DbExpressions.Tests
                 return;
             var dbDeleteQuery = new DbDeleteQuery();
             var expression = dbDeleteQuery.Delete(e => e.Table("SomeTable"))
-                .From(e => e.Table("SomeTable", "t0")).Where(e => e.Column("t0", "SomeColumn") == e.Constant(1));
+                .From(e => e.Table("SomeTable").As("t0")).Where(e => e.Column("t0", "SomeColumn") == e.Constant(1));
             var result = QueryTranslator.Translate(expression);
             Assert.AreEqual(DeleteExpressionWithAliasedTargetSyntax.Clean(), result.Sql.Clean());
         }
@@ -915,7 +915,7 @@ namespace DbExpressions.Tests
         {
             var dbSelectQuery = new DbSelectQuery();
             var expression = dbSelectQuery.Select(e => e.Column("SomeColumn"))
-                .From(e => e.Table("SomeTable")).OrderBy(e => e.Column("SomeColumn"),DbOrderByExpressionType.Ascending);
+                .From(e => e.Table("SomeTable")).OrderBy(e => e.Column("SomeColumn"), DbOrderByExpressionType.Ascending);
             var result = QueryTranslator.Translate(expression);
             Assert.AreEqual(SelectExpressionWithOrderBySyntax.Clean(), result.Sql.Clean());
         }
@@ -973,14 +973,14 @@ namespace DbExpressions.Tests
         }
 
 
-        
+
 
 
 
         [TestMethod]
         public void ShouldTranslateNullWithEquals()
         {
-            var expression = ExpressionFactory.Equal(ExpressionFactory.Column("SomeColumn"),ExpressionFactory.Constant(null));            
+            var expression = ExpressionFactory.Equal(ExpressionFactory.Column("SomeColumn"), ExpressionFactory.Constant(null));
             var result = QueryTranslator.Translate(expression);
             Assert.AreEqual(NullCheckEqualsExpressionSyntax.Clean(), result.Sql.Clean());
         }
@@ -1009,7 +1009,7 @@ namespace DbExpressions.Tests
             Assert.AreEqual(NullCheckNotEqualsExpressionSyntax.Clean(), result.Sql.Clean());
         }
 
-        
+
 
 
         public abstract string AndExpressionSyntax { get; }
@@ -1017,7 +1017,7 @@ namespace DbExpressions.Tests
         public abstract string AddExpressionSyntax { get; }
 
         public abstract string AliasExpressionSyntax { get; }
-        
+
         public abstract string AssignExpressionSyntax { get; }
 
         public abstract string AssignNullExpressionSyntax { get; }
@@ -1037,7 +1037,7 @@ namespace DbExpressions.Tests
         public abstract string DivideExpressionSyntax { get; }
 
         public abstract string EqualExpressionSyntax { get; }
-        
+
         public abstract string ExistsExpressionSyntax { get; }
 
         public abstract string GreaterThanExpressionSyntax { get; }
@@ -1063,7 +1063,7 @@ namespace DbExpressions.Tests
         public abstract string ListExpressionSyntax { get; }
 
         public abstract string BatchExpressionSyntax { get; }
-        
+
         public abstract string MaxExpressionSyntax { get; }
 
         public abstract string MinExpressionSyntax { get; }
@@ -1073,7 +1073,7 @@ namespace DbExpressions.Tests
         public abstract string SubstractExpressionSyntax { get; }
 
         public abstract string NotExpressionSyntax { get; }
-        
+
         public abstract string DistinctExpressionSyntax { get; }
 
         public abstract string DistinctWithTopExpressionSyntax { get; }
@@ -1081,7 +1081,7 @@ namespace DbExpressions.Tests
         public abstract string NotEqualExpressionSyntax { get; }
 
         public abstract string OrExpressionSyntax { get; }
-        
+
         public abstract string OrderByAscendingExpressionSyntax { get; }
 
         public abstract string OrderByDescendingExpressionSyntax { get; }
@@ -1137,17 +1137,17 @@ namespace DbExpressions.Tests
         public abstract string AddDaysExpressionSyntax { get; }
 
         public abstract string AddHoursExpressionSyntax { get; }
-        
+
         public abstract string AddMinutesExpressionSyntax { get; }
 
         public abstract string AddSecondsExpressionSyntax { get; }
-        
+
         public abstract string AddMilliSecondsExpressionSyntax { get; }
 
         public abstract string NowExpressionSyntax { get; }
 
         public abstract string ToDayExpressionSyntax { get; }
-        
+
         public abstract string UpdateExpressionSyntax { get; }
 
         public abstract string UpdateExpressionWithAliasedTargetSyntax { get; }
@@ -1161,7 +1161,7 @@ namespace DbExpressions.Tests
         public abstract string DeleteExpressionWithAliasedTargetSyntax { get; }
 
         public abstract string SelectExpressionSyntax { get; }
-        
+
         public abstract string SelectExpressionWithTakeSyntax { get; }
 
         public abstract string SelectExpressionWithSkipSyntax { get; }
@@ -1175,7 +1175,7 @@ namespace DbExpressions.Tests
         public abstract string SelectExpressionWithGroupByHavingSyntax { get; }
 
 
-        public abstract string AbsExpressionSyntax {get;}
+        public abstract string AbsExpressionSyntax { get; }
 
         public abstract string AcosExpressionSyntax { get; }
 

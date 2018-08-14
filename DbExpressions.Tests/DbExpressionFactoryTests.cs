@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DbExpressions.Tests
 {
     [TestClass]
-    public class DbExpressionFactoryTests 
+    public class DbExpressionFactoryTests
     {
         #region Factory Language Constructs
 
@@ -18,17 +18,6 @@ namespace DbExpressions.Tests
             Assert.IsNotNull(expression.TableName);
             Assert.IsTrue(expression.ExpressionType == DbExpressionType.Table);
         }
-
-        [TestMethod]
-        public void ShouldCreateAliasedTableExpression()
-        {
-            var factory = new DbExpressionFactory();
-            var expression = factory.Table("SomeTable", "t0");
-            Assert.IsNotNull(expression);
-            Assert.IsNotNull(expression.Target);
-            Assert.IsTrue(expression.ExpressionType == DbExpressionType.Alias);
-        }
-
 
         [TestMethod]
         public void ShouldCreateColumnExpression()
@@ -90,7 +79,7 @@ namespace DbExpressions.Tests
             Assert.IsTrue(expression.OrderByExpressionType == DbOrderByExpressionType.Ascending);
             Assert.IsTrue(expression.ExpressionType == DbExpressionType.OrderBy);
         }
-        
+
         [TestMethod]
         public void ShouldCreateOrderByDescendingExpression()
         {
@@ -232,7 +221,7 @@ namespace DbExpressions.Tests
             Assert.IsTrue(expression.ExpressionType == DbExpressionType.Unary);
             Assert.IsTrue(expression.UnaryExpressionType == DbUnaryExpressionType.Not);
         }
-        
+
 
         #endregion
 
@@ -821,7 +810,7 @@ namespace DbExpressions.Tests
         public void ShouldCreatePowerExpression()
         {
             var factory = new DbExpressionFactory();
-            DbMathematicalFunctionExpression mathematicalFunctionExpression = factory.Power(factory.Column("SomeColumn"),factory.Constant(2));
+            DbMathematicalFunctionExpression mathematicalFunctionExpression = factory.Power(factory.Column("SomeColumn"), factory.Constant(2));
             ValidateMathematicalFunctionExpression(mathematicalFunctionExpression, DbMathematicalFunctionExpressionType.Power);
         }
 
@@ -898,7 +887,7 @@ namespace DbExpressions.Tests
             DbMathematicalFunctionExpression mathematicalFunctionExpression = factory.Tan(factory.Column("SomeColumn"));
             ValidateMathematicalFunctionExpression(mathematicalFunctionExpression, DbMathematicalFunctionExpressionType.Tan);
         }
-        
+
 
         #endregion
 
@@ -908,8 +897,8 @@ namespace DbExpressions.Tests
         public void ShouldCreateEqualsUsingOperatorOverloading()
         {
             var factory = new DbExpressionFactory();
-            var expression = (DbBinaryExpression) (factory.Column("SomeColumn") == 1);
-            Assert.AreEqual(DbBinaryExpressionType.Equal, expression.BinaryExpressionType);            
+            var expression = (DbBinaryExpression)(factory.Column("SomeColumn") == 1);
+            Assert.AreEqual(DbBinaryExpressionType.Equal, expression.BinaryExpressionType);
         }
 
         [TestMethod]
@@ -1013,7 +1002,7 @@ namespace DbExpressions.Tests
             var factory = new DbExpressionFactory();
             var tableExpression = factory.Table("SomeTable");
             var aliasExpression = tableExpression.As("t0");
-            Assert.AreEqual(DbExpressionType.Alias,aliasExpression.ExpressionType);
+            Assert.AreEqual(DbExpressionType.Alias, aliasExpression.ExpressionType);
         }
 
 

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace DbExpressions.Tests
 {
-    //[TestClass]
+    [TestClass]
     public class SQLiteExpressionSyntaxTests : DbExpressionSyntaxTests
     {
         protected override DbQueryTranslator QueryTranslator
@@ -441,7 +438,7 @@ namespace DbExpressions.Tests
 
         public override string Atan2ExpressionSyntax
         {
-            get { return "ATAN2([SomeColumn])"; }
+            get { return "ATAN2([SomeColumn],@p0)"; }
         }
 
         public override string CeilingExpressionSyntax

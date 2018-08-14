@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
-using System.Collections.Generic;
 using System.Text;
 
 namespace DbExpressions
@@ -43,17 +43,17 @@ namespace DbExpressions
                 if (binaryExpression.BinaryExpressionType == DbBinaryExpressionType.Equal)
                     return ExpressionFactory.Sql(string.Format("({0} IS {1})", leftExpression, rightExpression));
                 if (binaryExpression.BinaryExpressionType == DbBinaryExpressionType.NotEqual)
-                    return ExpressionFactory.Sql(string.Format("({0} IS NOT {1})", leftExpression,rightExpression));
+                    return ExpressionFactory.Sql(string.Format("({0} IS NOT {1})", leftExpression, rightExpression));
             }
 
             if (binaryExpression.LeftExpression.ExpressionType == DbExpressionType.Constant && ((DbConstantExpression)binaryExpression.LeftExpression).Value == null)
             {
                 if (binaryExpression.BinaryExpressionType == DbBinaryExpressionType.Equal)
-                    return ExpressionFactory.Sql(string.Format("({0} IS {1})", rightExpression,leftExpression));
+                    return ExpressionFactory.Sql(string.Format("({0} IS {1})", rightExpression, leftExpression));
                 if (binaryExpression.BinaryExpressionType == DbBinaryExpressionType.NotEqual)
                     return ExpressionFactory.Sql(string.Format("({0} IS NOT {1})", rightExpression, leftExpression));
             }
-            
+
 
             var sqlFragment = string.Format(body, leftExpression,
                  GetBinaryOperator(binaryExpression.BinaryExpressionType),
@@ -105,19 +105,19 @@ namespace DbExpressions
         /// <returns><see cref="string"/></returns>
         protected override DbExpression VisitDateTimeFunctionExpression(DbDateTimeFunctionExpression dateTimeFunctionExpression)
         {
-            string body = GetDateTimeFunctionBody(dateTimeFunctionExpression.DateTimeFunctionExpressionType);                        
+            string body = GetDateTimeFunctionBody(dateTimeFunctionExpression.DateTimeFunctionExpressionType);
             switch (dateTimeFunctionExpression.DateTimeFunctionExpressionType)
             {
-                case DbDateTimeFunctionExpressionType.AddYears:                    
-                case DbDateTimeFunctionExpressionType.AddMonths:                    
-                case DbDateTimeFunctionExpressionType.AddDays:                    
-                case DbDateTimeFunctionExpressionType.AddHours:                    
-                case DbDateTimeFunctionExpressionType.AddMinutes:                    
-                case DbDateTimeFunctionExpressionType.AddSeconds:                    
+                case DbDateTimeFunctionExpressionType.AddYears:
+                case DbDateTimeFunctionExpressionType.AddMonths:
+                case DbDateTimeFunctionExpressionType.AddDays:
+                case DbDateTimeFunctionExpressionType.AddHours:
+                case DbDateTimeFunctionExpressionType.AddMinutes:
+                case DbDateTimeFunctionExpressionType.AddSeconds:
                 case DbDateTimeFunctionExpressionType.AddMilliseconds:
-                    return CreateDefaultFunctionSyntax(body, dateTimeFunctionExpression.Arguments.Reverse());                    
+                    return CreateDefaultFunctionSyntax(body, dateTimeFunctionExpression.Arguments.Reverse());
                 default:
-                    return CreateDefaultFunctionSyntax(body, dateTimeFunctionExpression.Arguments);                    
+                    return CreateDefaultFunctionSyntax(body, dateTimeFunctionExpression.Arguments);
             }
         }
 
@@ -133,7 +133,7 @@ namespace DbExpressions
         {
             if (!selectExpression.SkipExpression.IsNull())
                 return BuildPagingStatement(selectExpression);
-            
+
             var sb = new StringBuilder();
             DbExpression projectionExpression = selectExpression.ProjectionExpression;
             if (!projectionExpression.IsNull())
@@ -189,7 +189,7 @@ namespace DbExpressions
             return ExpressionFactory.Sql(sb.ToString().Trim());
         }
 
-        
+
 
         private DbExpression BuildPagingStatement(DbSelectExpression selectExpression)
         {
@@ -198,7 +198,7 @@ namespace DbExpressions
 
             sb.AppendFormat("SELECT {0} FROM (SELECT {0}, ", projectionExpression);
             sb.Append("ROW_NUMBER() OVER (ORDER BY ");
-            if (!selectExpression.OrderByExpression.IsNull() )
+            if (!selectExpression.OrderByExpression.IsNull())
                 sb.Append(Visit(selectExpression.OrderByExpression));
             else
                 sb.Append(Visit(selectExpression.ProjectionExpression));
@@ -224,8 +224,8 @@ namespace DbExpressions
             if (!selectExpression.TakeExpression.IsNull())
             {
                 DbExpression takeSqlExpression = Visit(selectExpression.TakeExpression);
-                
-                
+
+
                 sb.AppendFormat("WHERE [ROW_NUMBER] BETWEEN {0} + 1 AND {0} + {1} ", skipSqlExpression,
                                 takeSqlExpression);
             }
@@ -247,35 +247,35 @@ namespace DbExpressions
         /// <param name="updateExpression">The <see cref="DbUpdateExpression"/> to translate.</param>
         /// <returns><see cref="string"/></returns>
         protected override DbExpression VisitUpdateExpression(DbUpdateExpression updateExpression)
-        {        
+        {
             var sb = new StringBuilder();
             bool isAliased = false;
             if (updateExpression.Target.ExpressionType == DbExpressionType.Alias)
             {
-                sb.AppendFormat("UPDATE {0} ", Visit(((DbAliasExpression) updateExpression.Target).Target));
+                sb.AppendFormat("UPDATE {0} ", Visit(((DbAliasExpression)updateExpression.Target).Target));
                 isAliased = true;
             }
             else
-                sb.AppendFormat("UPDATE {0} ", Visit(updateExpression.Target));            
+                sb.AppendFormat("UPDATE {0} ", Visit(updateExpression.Target));
             sb.AppendLine();
             if (!updateExpression.SetExpression.IsNull())
             {
                 sb.AppendFormat("SET {0} ", Visit(updateExpression.SetExpression));
             }
-   
+
             //If the target table is aliased, we asume that the same alias is used in the FROM clause
             if (!updateExpression.FromExpression.IsNull())
             {
                 sb.AppendLine();
                 sb.AppendLine("FROM ");
-                sb.AppendFormat(1, "{0} ", Visit(updateExpression.FromExpression));                
+                sb.AppendFormat(1, "{0} ", Visit(updateExpression.FromExpression));
             }
             //If the target table is aliased we need to add a FROM clause
-            else if (updateExpression.FromExpression.IsNull() && isAliased)            
+            else if (updateExpression.FromExpression.IsNull() && isAliased)
             {
                 sb.AppendLine();
                 sb.AppendLine("FROM ");
-                sb.AppendFormat(1, "{0} ", Visit(updateExpression.Target));                
+                sb.AppendFormat(1, "{0} ", Visit(updateExpression.Target));
             }
 
             if (!updateExpression.WhereExpression.IsNull())
@@ -284,7 +284,7 @@ namespace DbExpressions
                 sb.AppendLine("WHERE ");
                 sb.AppendFormat(1, "{0} ", Visit(updateExpression.WhereExpression));
             }
-            
+
             return ExpressionFactory.Sql(sb.ToString().Trim());
         }
 
@@ -383,7 +383,7 @@ namespace DbExpressions
             if (constantExpression.Value == null)
                 return ExpressionFactory.Sql("NULL");
             var parameterName = string.Format("@p{0}", Parameters.Count());
-            CreateParameter(parameterName,constantExpression.Value);
+            CreateParameter(parameterName, constantExpression.Value);
             return ExpressionFactory.Sql(parameterName);
         }
 
@@ -462,7 +462,7 @@ namespace DbExpressions
             {
                 sb.AppendFormat("{0};", Visit(dbExpression));
                 sb.AppendLine();
-            }            
+            }
             return ExpressionFactory.Sql(sb.ToString());
         }
 
@@ -478,9 +478,9 @@ namespace DbExpressions
         {
             string body = "{0} IN({1})";
             if (inExpression.Expression.ExpressionType == DbExpressionType.Query)
-                body = "{0} IN{1}";                       
-            string syntax = string.Format(body,Visit(inExpression.Target),Visit(inExpression.Expression));
-            return ExpressionFactory.Sql(syntax);            
+                body = "{0} IN{1}";
+            string syntax = string.Format(body, Visit(inExpression.Target), Visit(inExpression.Expression));
+            return ExpressionFactory.Sql(syntax);
         }
 
         /// <summary>
@@ -513,7 +513,7 @@ namespace DbExpressions
             return ExpressionFactory.Sql(syntax);
         }
 
-        
+
 
 
         /// <summary>
@@ -529,7 +529,7 @@ namespace DbExpressions
             {
                 case DbUnaryExpressionType.Not:
                     syntax = string.Format("NOT {0}", Visit(unaryExpression.Operand));
-                    break;                
+                    break;
                 case DbUnaryExpressionType.Cast:
                     syntax = string.Format("CAST({0} AS {1})",
                                            Visit(unaryExpression.Operand),
@@ -570,7 +570,7 @@ namespace DbExpressions
                 return "BIT";
             if (type == typeof(Single))
                 return "REAL";
-            throw new ArgumentOutOfRangeException("type",string.Format("No conversion exists for the type: {0}", type.Name));
+            throw new ArgumentOutOfRangeException("type", string.Format("No conversion exists for the type: {0}", type.Name));
         }
 
 
@@ -595,9 +595,8 @@ namespace DbExpressions
         /// <returns><see cref="string"/></returns>
         protected override DbExpression VisitPrefixExpression(DbPrefixExpression prefixExpression)
         {
-            string syntax = string.Format("[{0}].{1}", prefixExpression.Prefix, Visit(prefixExpression.Target));
+            string syntax = string.Format("{0}.{1}", QuoteIdentifier(prefixExpression.Prefix), Visit(prefixExpression.Target));
             return ExpressionFactory.Sql(syntax);
-
         }
 
 
@@ -613,7 +612,7 @@ namespace DbExpressions
                 case DbBinaryExpressionType.And:
                     return " AND ";
                 case DbBinaryExpressionType.Or:
-                    return " OR ";                
+                    return " OR ";
                 case DbBinaryExpressionType.Equal:
                 case DbBinaryExpressionType.Assignment:
                     return " = ";
@@ -634,9 +633,9 @@ namespace DbExpressions
                 case DbBinaryExpressionType.Multiply:
                     return " * ";
                 case DbBinaryExpressionType.Divide:
-                    return " / ";                
+                    return " / ";
                 default:
-                    throw new ArgumentOutOfRangeException("binaryExpressionType", binaryExpressionType,"is not supported");
+                    throw new ArgumentOutOfRangeException("binaryExpressionType", binaryExpressionType, "is not supported");
             }
         }
 
@@ -674,7 +673,7 @@ namespace DbExpressions
         {
             if (arguments.Count() == 0)
                 return ExpressionFactory.Sql(functionBody);
-            var argumentString = arguments.Select(a => Visit(a).ToString()).Aggregate((current,next) => current + "," + next);
+            var argumentString = arguments.Select(a => Visit(a).ToString()).Aggregate((current, next) => current + "," + next);
             var functionCall = string.Format(functionBody, argumentString);
             return ExpressionFactory.Sql(functionCall);
         }
@@ -709,7 +708,7 @@ namespace DbExpressions
                 case DbStringFunctionExpressionType.SubString:
                     return "SUBSTR({0})";
                 default:
-                    throw new ArgumentOutOfRangeException("stringFunctionExpressionType",stringFunctionExpressionType," is not supported");
+                    throw new ArgumentOutOfRangeException("stringFunctionExpressionType", stringFunctionExpressionType, " is not supported");
             }
         }
 
@@ -779,7 +778,7 @@ namespace DbExpressions
 
         private static string GetDateTimeFunctionBody(DbDateTimeFunctionExpressionType dateTimeFunctionExpressionType)
         {
-            switch(dateTimeFunctionExpressionType)
+            switch (dateTimeFunctionExpressionType)
             {
                 case DbDateTimeFunctionExpressionType.AddYears:
                     return "DATEADD(year,{0})";
@@ -795,7 +794,7 @@ namespace DbExpressions
                     return "DATEADD(second,{0})";
                 case DbDateTimeFunctionExpressionType.AddMilliseconds:
                     return "DATEADD(millisecond,{0})";
-                case DbDateTimeFunctionExpressionType.Date:                
+                case DbDateTimeFunctionExpressionType.Date:
                     return "CONVERT(DATETIME,CONVERT(VARCHAR,{0},102))";
                 case DbDateTimeFunctionExpressionType.DayOfMonth:
                     return "DATEPART(day,{0})";

@@ -2,7 +2,7 @@
 
 namespace DbExpressions.Tests
 {
-    //[TestClass]
+    [TestClass]
     public class SqlExpressionSyntaxTests : DbExpressionSyntaxTests
     {
         protected override DbQueryTranslator QueryTranslator
@@ -398,7 +398,7 @@ namespace DbExpressions.Tests
         {
             get
             {
-                return "SELECT [SomeColumn] FROM (SELECT [SomeColumn], ROW_NUMBER() OVER (ORDER BY [SomeColumn]) AS [ROW_NUMBER] FROM [SomeTable] ) AS __numbered__result WHERE [ROW_NUMBER] > @p0 ORDER BY [ROW_NUMBER]";                    
+                return "SELECT [SomeColumn] FROM (SELECT [SomeColumn], ROW_NUMBER() OVER (ORDER BY [SomeColumn]) AS [ROW_NUMBER] FROM [SomeTable] ) AS __numbered__result WHERE [ROW_NUMBER] > @p0 ORDER BY [ROW_NUMBER]";
             }
         }
 
@@ -448,7 +448,7 @@ namespace DbExpressions.Tests
 
         public override string Atan2ExpressionSyntax
         {
-            get { return "ATAN2([SomeColumn])"; }
+            get { return "ATAN2([SomeColumn],@p0)"; }
         }
 
         public override string CeilingExpressionSyntax

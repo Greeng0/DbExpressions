@@ -9,7 +9,7 @@ namespace DbExpressions
     /// </summary>
     /// <seealso cref="DbExpressionType"/>
     public class DbExpressionFactory
-    {        
+    {
         #region Binary Expressions
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace DbExpressions
         /// <returns>A <see cref="DbBinaryExpression"/> instance.</returns>
         public DbBinaryExpression And(DbExpression leftExpression, DbExpression rightExpression)
         {
-            return MakeBinary(DbBinaryExpressionType.And, leftExpression, rightExpression);            
+            return MakeBinary(DbBinaryExpressionType.And, leftExpression, rightExpression);
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace DbExpressions
         /// <returns>A <see cref="DbBinaryExpression"/> instance.</returns>
         public DbBinaryExpression Or(DbExpression leftExpression, DbExpression rightExpression)
         {
-            return MakeBinary(DbBinaryExpressionType.Or, leftExpression, rightExpression);            
+            return MakeBinary(DbBinaryExpressionType.Or, leftExpression, rightExpression);
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace DbExpressions
         /// <returns>A <see cref="DbBinaryExpression"/> instance.</returns>
         public DbBinaryExpression Equal(DbExpression leftExpression, DbExpression rightExpression)
         {
-            return MakeBinary(DbBinaryExpressionType.Equal, leftExpression, rightExpression);            
+            return MakeBinary(DbBinaryExpressionType.Equal, leftExpression, rightExpression);
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace DbExpressions
         /// <returns>A <see cref="DbBinaryExpression"/> instance.</returns>
         public DbBinaryExpression NotEqual(DbExpression leftExpression, DbExpression rightExpression)
         {
-            return MakeBinary(DbBinaryExpressionType.NotEqual, leftExpression, rightExpression);            
+            return MakeBinary(DbBinaryExpressionType.NotEqual, leftExpression, rightExpression);
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace DbExpressions
         /// <returns>A <see cref="DbBinaryExpression"/> instance.</returns>
         public DbBinaryExpression GreaterThan(DbExpression leftExpression, DbExpression rightExpression)
         {
-            return MakeBinary(DbBinaryExpressionType.GreaterThan, leftExpression, rightExpression);            
+            return MakeBinary(DbBinaryExpressionType.GreaterThan, leftExpression, rightExpression);
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace DbExpressions
         /// <returns>A <see cref="DbBinaryExpression"/> instance.</returns>
         public DbBinaryExpression GreaterThanOrEqual(DbExpression leftExpression, DbExpression rightExpression)
         {
-            return MakeBinary(DbBinaryExpressionType.GreaterThanOrEqual, leftExpression, rightExpression);            
+            return MakeBinary(DbBinaryExpressionType.GreaterThanOrEqual, leftExpression, rightExpression);
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace DbExpressions
         /// <returns>A <see cref="DbBinaryExpression"/> instance.</returns>
         public DbBinaryExpression LessThan(DbExpression leftExpression, DbExpression rightExpression)
         {
-            return MakeBinary(DbBinaryExpressionType.LessThan, leftExpression, rightExpression);            
+            return MakeBinary(DbBinaryExpressionType.LessThan, leftExpression, rightExpression);
         }
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace DbExpressions
         /// <returns>A <see cref="DbBinaryExpression"/> instance.</returns>
         public DbBinaryExpression LessThanOrEqual(DbExpression leftExpression, DbExpression rightExpression)
         {
-            return MakeBinary(DbBinaryExpressionType.LessThanOrEqual, leftExpression, rightExpression);            
+            return MakeBinary(DbBinaryExpressionType.LessThanOrEqual, leftExpression, rightExpression);
         }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace DbExpressions
         /// <returns>A <see cref="DbBinaryExpression"/> instance.</returns>
         public DbBinaryExpression Add(DbExpression leftExpression, DbExpression rightExpression)
         {
-            return MakeBinary(DbBinaryExpressionType.Add, leftExpression, rightExpression);            
+            return MakeBinary(DbBinaryExpressionType.Add, leftExpression, rightExpression);
         }
 
         /// <summary>
@@ -132,7 +132,7 @@ namespace DbExpressions
         /// <returns>A <see cref="DbBinaryExpression"/> instance.</returns>
         public DbBinaryExpression Subtract(DbExpression leftExpression, DbExpression rightExpression)
         {
-            return MakeBinary(DbBinaryExpressionType.Subtract, leftExpression, rightExpression);            
+            return MakeBinary(DbBinaryExpressionType.Subtract, leftExpression, rightExpression);
         }
 
         /// <summary>
@@ -143,7 +143,7 @@ namespace DbExpressions
         /// <returns>A <see cref="DbBinaryExpression"/> instance.</returns>
         public DbBinaryExpression Divide(DbExpression leftExpression, DbExpression rightExpression)
         {
-            return MakeBinary(DbBinaryExpressionType.Divide, leftExpression, rightExpression);            
+            return MakeBinary(DbBinaryExpressionType.Divide, leftExpression, rightExpression);
         }
 
         /// <summary>
@@ -236,7 +236,7 @@ namespace DbExpressions
         #endregion
 
         #region String Functions
-        
+
         /// <summary>
         /// Creates a new <see cref="DbStringFunctionExpression"/>.
         /// </summary>
@@ -266,7 +266,7 @@ namespace DbExpressions
         /// <returns>A <see cref="DbStringFunctionExpression"/> instance.</returns>
         public DbStringFunctionExpression ToLower(DbExpression expression)
         {
-            return MakeStringFunction(DbStringFunctionExpressionType.ToLower, new[] { expression });            
+            return MakeStringFunction(DbStringFunctionExpressionType.ToLower, new[] { expression });
         }
 
         /// <summary>
@@ -276,7 +276,7 @@ namespace DbExpressions
         /// <returns>A <see cref="DbStringFunctionExpression"/> instance.</returns>
         public DbStringFunctionExpression Length(DbExpression expression)
         {
-            return MakeStringFunction(DbStringFunctionExpressionType.Length, new[] { expression });            
+            return MakeStringFunction(DbStringFunctionExpressionType.Length, new[] { expression });
         }
 
         /// <summary>
@@ -287,7 +287,7 @@ namespace DbExpressions
         /// <returns>A <see cref="DbStringFunctionExpression"/> instance.</returns>
         public DbStringFunctionExpression Trim(DbExpression expression)
         {
-            return MakeStringFunction(DbStringFunctionExpressionType.Trim, new[] { expression });            
+            return MakeStringFunction(DbStringFunctionExpressionType.Trim, new[] { expression });
         }
 
         /// <summary>
@@ -298,7 +298,7 @@ namespace DbExpressions
         /// <returns>A <see cref="DbStringFunctionExpression"/> instance.</returns>
         public DbStringFunctionExpression TrimEnd(DbExpression expression)
         {
-            return MakeStringFunction(DbStringFunctionExpressionType.TrimEnd, new[] { expression });            
+            return MakeStringFunction(DbStringFunctionExpressionType.TrimEnd, new[] { expression });
         }
 
         /// <summary>
@@ -309,7 +309,7 @@ namespace DbExpressions
         /// <returns>A <see cref="DbStringFunctionExpression"/> instance.</returns>
         public DbStringFunctionExpression TrimStart(DbExpression expression)
         {
-            return MakeStringFunction(DbStringFunctionExpressionType.TrimStart, new[] { expression });            
+            return MakeStringFunction(DbStringFunctionExpressionType.TrimStart, new[] { expression });
         }
 
         /// <summary>
@@ -322,7 +322,7 @@ namespace DbExpressions
         /// <returns>A <see cref="DbStringFunctionExpression"/> instance.</returns>
         public DbStringFunctionExpression Replace(DbExpression expression, DbExpression oldValue, DbExpression newValue)
         {
-            return MakeStringFunction(DbStringFunctionExpressionType.Replace, new[] { expression, oldValue, newValue });                        
+            return MakeStringFunction(DbStringFunctionExpressionType.Replace, new[] { expression, oldValue, newValue });
         }
 
         /// <summary>
@@ -516,7 +516,7 @@ namespace DbExpressions
         public DbDateTimeFunctionExpression Month(DbExpression target)
         {
             return MakeDateTimeFunction(DbDateTimeFunctionExpressionType.Month, new[] { target });
-        }        
+        }
 
         /// <summary>
         /// Creates a <see cref="DbDateTimeFunctionExpression"/> that represents returning hour component of a date/time value.
@@ -564,7 +564,7 @@ namespace DbExpressions
         /// <returns>A <see cref="DbDateTimeFunctionExpression"/> instance.</returns>
         public DbDateTimeFunctionExpression ToDay()
         {
-            return MakeDateTimeFunction(DbDateTimeFunctionExpressionType.ToDay, new DbExpression[] { });                                    
+            return MakeDateTimeFunction(DbDateTimeFunctionExpressionType.ToDay, new DbExpression[] { });
         }
 
         /// <summary>
@@ -894,16 +894,16 @@ namespace DbExpressions
         }
 
         /// <summary>
-        /// Creates a new <see cref="DbTableExpression"/> that is wrapped inside a <see cref="DbAliasExpression"/>.
+        /// Creates a new <see cref="DbTableExpression"/> that is wrapped inside a <see cref="DbPrefixExpression"/>.
         /// </summary>
+        /// <param name="prefix">The column prefix.</param>
         /// <param name="tableName">The name of the table.</param>
-        /// <param name="alias">The table alias.</param>
-        /// <returns>A <see cref="DbAliasExpression"/> instance.</returns>
-        public DbAliasExpression Table(string tableName, string alias)
+        /// <returns>A <see cref="DbPrefixExpression"/> instance.</returns>
+        public DbPrefixExpression Table(string prefix, string tableName)
         {
             var tableExpression = Table(tableName);
-            var aliasExpression = Alias(tableExpression, alias);
-            return aliasExpression;
+            var prefixExpression = Prefix(tableExpression, prefix);
+            return prefixExpression;
         }
 
         /// <summary>
@@ -918,7 +918,7 @@ namespace DbExpressions
             var joinExpression = new DbJoinExpression(joinType, target, condition);
             return joinExpression;
         }
-        
+
         /// <summary>
         /// Create a new <see cref="DbJoinExpression"/> that represents an 'INNER JOIN'.
         /// </summary>
@@ -961,7 +961,7 @@ namespace DbExpressions
         public DbOrderByExpression MakeOrderBy(DbOrderByExpressionType orderByExpressionType, DbExpression expression)
         {
             var dbOrderByExpression = new DbOrderByExpression
-                                      { OrderByExpressionType = orderByExpressionType, Expression = expression };
+            { OrderByExpressionType = orderByExpressionType, Expression = expression };
             return dbOrderByExpression;
         }
 
@@ -1004,7 +1004,7 @@ namespace DbExpressions
         public DbConditionalExpression Conditional(DbExpression condition, DbExpression trueExpression, DbExpression falseExpression)
         {
             var conditionalExpression = new DbConditionalExpression
-                                        { Condition = condition, IfTrue = trueExpression, IfFalse = falseExpression };
+            { Condition = condition, IfTrue = trueExpression, IfFalse = falseExpression };
             return conditionalExpression;
         }
 
@@ -1069,7 +1069,7 @@ namespace DbExpressions
         /// <returns>A <see cref="DbSelectQuery"/> instance.</returns>
         public DbSelectQuery Select(params Func<DbExpressionFactory, DbExpression>[] expressionSelector)
         {
-            return Select(List(expressionSelector.Select(e => e(this))));                        
+            return Select(List(expressionSelector.Select(e => e(this))));
         }
 
         /// <summary>
@@ -1080,13 +1080,13 @@ namespace DbExpressions
         public DbSelectQuery Select(DbExpression expression)
         {
             var dbSelectQuery = new DbSelectQuery
-                                    {
-                                        QueryExpression =
+            {
+                QueryExpression =
                                             {
                                                 IsSubQuery = true,
                                                 ProjectionExpression = expression
                                             }
-                                    };
+            };
             return dbSelectQuery;
         }
 
@@ -1128,7 +1128,7 @@ namespace DbExpressions
         public DbConcatExpression Concat(DbExpression leftExpression, DbExpression rightExpression)
         {
             var concatExpression = new DbConcatExpression
-                                   { LeftExpression = leftExpression, RightExpression = rightExpression };
+            { LeftExpression = leftExpression, RightExpression = rightExpression };
             return concatExpression;
         }
 
@@ -1172,7 +1172,7 @@ namespace DbExpressions
         /// <param name="selectQuery">A sub query that has a result set of one column.</param>
         /// <returns>A <see cref="DbInExpression"/> instance.</returns>
         public DbInExpression In(DbExpression target, DbQuery<DbSelectExpression> selectQuery)
-        {            
+        {
             var inExpression = In(target, (DbExpression)selectQuery);
             return inExpression;
         }
@@ -1188,7 +1188,7 @@ namespace DbExpressions
             var inExpression = new DbInExpression(target, expression);
             return inExpression;
         }
-               
+
         /// <summary>
         /// Creates a new <see cref="DbUnaryExpression"/>.
         /// </summary>
@@ -1222,7 +1222,7 @@ namespace DbExpressions
         {
             return MakeUnary(DbUnaryExpressionType.Cast, operand, targetType);
         }
-       
+
         /// <summary>
         /// Creates a new <see cref="DbDeleteExpression"/> that represents delete statement.
         /// </summary>
@@ -1234,11 +1234,11 @@ namespace DbExpressions
         {
             var dbDeleteExpression = new
                 DbDeleteExpression
-                                         {
-                                             Target = target,
-                                             FromExpression = fromExpression,
-                                             WhereExpression = whereExpression
-                                         };
+            {
+                Target = target,
+                FromExpression = fromExpression,
+                WhereExpression = whereExpression
+            };
             return dbDeleteExpression;
         }
 

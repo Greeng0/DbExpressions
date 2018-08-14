@@ -2,7 +2,7 @@
 
 namespace DbExpressions.Tests
 {
-    //[TestClass]
+    [TestClass]
     public class MySqlExpressionSyntaxTests : DbExpressionSyntaxTests
     {
         protected override DbQueryTranslator QueryTranslator
@@ -91,8 +91,8 @@ namespace DbExpressions.Tests
         }
 
         public override string InValueRangeExpressionSyntax
-        {            
-             get { return "`SomeColumn` IN(?p0,?p1)"; }
+        {
+            get { return "`SomeColumn` IN(?p0,?p1)"; }
         }
 
         public override string InSubQueryExpressionSyntax
@@ -338,7 +338,7 @@ namespace DbExpressions.Tests
 
         public override string AddMilliSecondsExpressionSyntax
         {
-            get { return "DATE_ADD(`SomeColumn`, INTERVAL ?p0 * 1000 MICROSECOND)"; }            
+            get { return "DATE_ADD(`SomeColumn`, INTERVAL ?p0 * 1000 MICROSECOND)"; }
         }
 
         public override string NowExpressionSyntax
@@ -358,7 +358,7 @@ namespace DbExpressions.Tests
 
         public override string UpdateExpressionWithAliasedTargetSyntax
         {
-            get { return "UPDATE `SomeTable` AS t0 SET `SomeColumn` = ?p0 WHERE (`SomeColumn` = ?p1)"; }           
+            get { return "UPDATE `SomeTable` AS t0 SET `SomeColumn` = ?p0 WHERE (`SomeColumn` = ?p1)"; }
         }
 
         public override string UpdateExpressionWithFromClauseSyntax
@@ -439,7 +439,7 @@ namespace DbExpressions.Tests
 
         public override string Atan2ExpressionSyntax
         {
-            get { return "ATAN2(`SomeColumn`)"; }
+            get { return "ATAN2(`SomeColumn`,?p0)"; }
         }
 
         public override string CeilingExpressionSyntax
